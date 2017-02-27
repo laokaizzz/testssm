@@ -25,4 +25,13 @@ public interface XXGLBanJiService {
 	 * @date 2017年2月24日 上午11:48:19
 	 */
 	public XXGLBanJi update(XXGLBanJi model);
+
+	/**
+	 * 查询通过guid
+	 * @param string
+	 * @return
+	 * @author zhengkai
+	 * @date 2017年2月27日 下午5:02:48
+	 */
+	public XXGLBanJi queryDetailByGuid(String string);
 }

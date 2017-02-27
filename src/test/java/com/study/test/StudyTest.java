@@ -8,7 +8,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSON;
+import com.study.entity.XXGLBanJi;
 import com.study.entity.XXGLXueSheng;
+import com.study.service.XXGLBanJiService;
 import com.study.service.XXGLXueShengService;
 
 /**
@@ -23,6 +25,9 @@ public class StudyTest {
 	
 	@Autowired
 	private XXGLXueShengService xxglXueShengService;
+	
+	@Autowired
+	private XXGLBanJiService xxglBanJiService;
 /*	
 	@Test
 	public void test1(){
@@ -40,7 +45,11 @@ public class StudyTest {
 	
 	@Test
 	public void test2(){
-		XXGLXueSheng model= xxglXueShengService.queryByGuid("46d3f6cdfcc511e6a4e1e03f4947f22f");
-		logger.info(JSON.toJSONString(model));  
+/*		XXGLXueSheng model= xxglXueShengService.queryByGuid("46d3f6cdfcc511e6a4e1e03f4947f22f");
+		logger.info(JSON.toJSONString(model)); 
+		*/
+		
+		XXGLBanJi model= xxglBanJiService.queryDetailByGuid("1");
+		logger.info(JSON.toJSONString(model)); 
 	}
 }

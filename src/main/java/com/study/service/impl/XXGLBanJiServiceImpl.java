@@ -30,4 +30,10 @@ public class XXGLBanJiServiceImpl implements XXGLBanJiService {
 		return null;
 	}
 
+	@Override
+	public XXGLBanJi queryDetailByGuid(String guid) {
+		// TODO Auto-generated method stub
+		return xxglBanJiDao.queryDetailByGuid(guid);
+	}
+
 }

@@ -1,5 +1,7 @@
 package com.study.entity;
 
+import java.util.List;
+
 public class XXGLBanJi {
     private String banjiGuid;
 
@@ -8,6 +10,8 @@ public class XXGLBanJi {
     private String address;
 
     private String remark;
+    
+    private List<XXGLXueSheng> lsXueSheng;
 
     public String getBanjiGuid() {
         return banjiGuid;
@@ -40,4 +44,12 @@ public class XXGLBanJi {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+	public List<XXGLXueSheng> getLsXueSheng() {
+		return lsXueSheng;
+	}
+
+	public void setLsXueSheng(List<XXGLXueSheng> lsXueSheng) {
+		this.lsXueSheng = lsXueSheng;
+	}
 }

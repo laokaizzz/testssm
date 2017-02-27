@@ -11,12 +11,29 @@
   <sql id="Base_Column_List" >
     BanJi_Guid, BanJi_Name, Address, Remark
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from XXGL_BanJi
     where BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR}
   </select>
+  
+    <resultMap type="com.study.entity.XXGLBanJi" id="DetailResultMap">
+  	 <id column="BanJi_Guid" property="banjiGuid" jdbcType="VARCHAR" />
+    <result column="BanJi_Name" property="banjiName" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <collection property="lsXueSheng" ofType="com.study.entity.XXGLXueSheng">
+    	  <id column="XueSheng_Guid" property="xueshengGuid" jdbcType="VARCHAR" />
+   		 <result column="XueSheng_Name" property="xueshengName" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  <select id="queryDetailByGuid" resultMap="DetailResultMap" parameterType="java.lang.String">
+  	select * from XXGL_BanJi a,XXGL_XueSheng b where a.BanJi_Guid=b.BanJi_Guid and a.BanJi_Guid=#{banjiGuid,jdbcType=VARCHAR} 
+  </select>
+
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from XXGL_BanJi
     where BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR}
