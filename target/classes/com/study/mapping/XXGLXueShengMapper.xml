@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.study.dao.XXGLXueShengDao" >
-  <resultMap id="BaseResultMap" type="com.study.entity.XXGLXueSheng" >
+  <resultMap id="BaseResultMap" type="XXGLXueSheng" >
     <id column="XueSheng_Guid" property="xueshengGuid" jdbcType="VARCHAR" />
     <result column="XueSheng_Name" property="xueshengName" jdbcType="VARCHAR" />
     <result column="Sex" property="sex" jdbcType="BIT" />
     <result column="Remark" property="remark" jdbcType="VARCHAR" />
     <result column="BanJi_Guid" property="banjiGuid" jdbcType="VARCHAR" />
-    <association property="banJi" javaType="com.study.entity.XXGLBanJi">
+    <association property="banJi" javaType="XXGLBanJi">
     	<id column="BanJi_Guid" property="banjiGuid" jdbcType="VARCHAR" />
     	<result column="BanJi_Name" property="banjiName" jdbcType="VARCHAR"  />
     </association>
@@ -24,7 +24,7 @@
     delete from XXGL_XueSheng
     where XueSheng_Guid = #{xueshengGuid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.study.entity.XXGLXueSheng" >
+  <insert id="insert" parameterType="XXGLXueSheng" >
     <selectKey keyProperty="xueshengGuid" resultType="String" order="BEFORE">  
         select  replace(uuid(),'-','')   from dual  
     </selectKey>  
@@ -33,7 +33,7 @@
     values (#{xueshengGuid,jdbcType=VARCHAR}, #{xueshengName,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, 
       #{remark,jdbcType=VARCHAR}, #{banjiGuid,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.study.entity.XXGLXueSheng" >
+  <insert id="insertSelective" parameterType="XXGLXueSheng" >
     insert into XXGL_XueSheng
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="xueshengGuid != null" >
@@ -70,7 +70,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.study.entity.XXGLXueSheng" >
+  <update id="updateByPrimaryKeySelective" parameterType="XXGLXueSheng" >
     update XXGL_XueSheng
     <set >
       <if test="xueshengName != null" >
@@ -88,7 +88,7 @@
     </set>
     where XueSheng_Guid = #{xueshengGuid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.study.entity.XXGLXueSheng" >
+  <update id="updateByPrimaryKey" parameterType="XXGLXueSheng" >
     update XXGL_XueSheng
     set XueSheng_Name = #{xueshengName,jdbcType=VARCHAR},
       Sex = #{sex,jdbcType=BIT},

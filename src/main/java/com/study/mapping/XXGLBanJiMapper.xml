@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.study.dao.XXGLBanJiDao" >
-  <resultMap id="BaseResultMap" type="com.study.entity.XXGLBanJi" >
+  <resultMap id="BaseResultMap" type="XXGLBanJi" >
     <id column="BanJi_Guid" property="banjiGuid" jdbcType="VARCHAR" />
     <result column="BanJi_Name" property="banjiName" jdbcType="VARCHAR" />
     <result column="Address" property="address" jdbcType="VARCHAR" />
@@ -18,12 +18,12 @@
     where BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR}
   </select>
   
-    <resultMap type="com.study.entity.XXGLBanJi" id="DetailResultMap">
+    <resultMap type="XXGLBanJi" id="DetailResultMap">
   	 <id column="BanJi_Guid" property="banjiGuid" jdbcType="VARCHAR" />
     <result column="BanJi_Name" property="banjiName" jdbcType="VARCHAR" />
     <result column="Address" property="address" jdbcType="VARCHAR" />
     <result column="Remark" property="remark" jdbcType="VARCHAR" />
-    <collection property="lsXueSheng" ofType="com.study.entity.XXGLXueSheng">
+    <collection property="lsXueSheng" ofType="XXGLXueSheng">
     	  <id column="XueSheng_Guid" property="xueshengGuid" jdbcType="VARCHAR" />
    		 <result column="XueSheng_Name" property="xueshengName" jdbcType="VARCHAR" />
     </collection>
@@ -38,7 +38,7 @@
     delete from XXGL_BanJi
     where BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.study.entity.XXGLBanJi" >
+  <insert id="insert" parameterType="XXGLBanJi" >
     <selectKey keyProperty="banjiGuid" resultType="String" order="BEFORE">  
         select  replace(uuid(),'-','')   from dual  
     </selectKey>  
@@ -47,7 +47,7 @@
     values (#{banjiGuid,jdbcType=VARCHAR}, #{banjiName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.study.entity.XXGLBanJi" >
+  <insert id="insertSelective" parameterType="XXGLBanJi" >
     insert into XXGL_BanJi
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="banjiGuid != null" >
@@ -78,7 +78,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.study.entity.XXGLBanJi" >
+  <update id="updateByPrimaryKeySelective" parameterType="XXGLBanJi" >
     update XXGL_BanJi
     <set >
       <if test="banjiName != null" >
@@ -93,7 +93,7 @@
     </set>
     where BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.study.entity.XXGLBanJi" >
+  <update id="updateByPrimaryKey" parameterType="XXGLBanJi" >
     update XXGL_BanJi
     set BanJi_Name = #{banjiName,jdbcType=VARCHAR},
       Address = #{address,jdbcType=VARCHAR},
