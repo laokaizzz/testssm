@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.dao.XXGLXueShengDao" >
+  <resultMap id="BaseResultMap" type="com.study.entity.XXGLXueSheng" >
+    <id column="XueSheng_Guid" property="xueshengGuid" jdbcType="VARCHAR" />
+    <result column="XueSheng_Name" property="xueshengName" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="BIT" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="BanJi_Guid" property="banjiGuid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    XueSheng_Guid, XueSheng_Name, Sex, Remark, BanJi_Guid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from XXGL_XueSheng
+    where XueSheng_Guid = #{xueshengGuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from XXGL_XueSheng
+    where XueSheng_Guid = #{xueshengGuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.study.entity.XXGLXueSheng" >
+    <selectKey keyProperty="xueshengGuid" resultType="String" order="BEFORE">  
+        select  replace(uuid(),'-','')   from dual  
+    </selectKey>  
+    insert into XXGL_XueSheng (XueSheng_Guid, XueSheng_Name, Sex, 
+      Remark, BanJi_Guid)
+    values (#{xueshengGuid,jdbcType=VARCHAR}, #{xueshengName,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, 
+      #{remark,jdbcType=VARCHAR}, #{banjiGuid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.study.entity.XXGLXueSheng" >
+    insert into XXGL_XueSheng
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xueshengGuid != null" >
+        XueSheng_Guid,
+      </if>
+      <if test="xueshengName != null" >
+        XueSheng_Name,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="banjiGuid != null" >
+        BanJi_Guid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xueshengGuid != null" >
+        #{xueshengGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="xueshengName != null" >
+        #{xueshengName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="banjiGuid != null" >
+        #{banjiGuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.study.entity.XXGLXueSheng" >
+    update XXGL_XueSheng
+    <set >
+      <if test="xueshengName != null" >
+        XueSheng_Name = #{xueshengName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="banjiGuid != null" >
+        BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XueSheng_Guid = #{xueshengGuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.study.entity.XXGLXueSheng" >
+    update XXGL_XueSheng
+    set XueSheng_Name = #{xueshengName,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=BIT},
+      Remark = #{remark,jdbcType=VARCHAR},
+      BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR}
+    where XueSheng_Guid = #{xueshengGuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

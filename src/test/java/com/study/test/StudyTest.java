@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.study.entity.XXGLStudent;
-import com.study.service.XXGLStudentService;
+import com.alibaba.fastjson.JSON;
+import com.study.entity.XXGLXueSheng;
+import com.study.service.XXGLXueShengService;
 
 /**
  * @author zhengkai
@@ -21,16 +22,25 @@ public class StudyTest {
 	private static Logger logger=Logger.getLogger(StudyTest.class);
 	
 	@Autowired
-	private XXGLStudentService xxglStudentService;
+	private XXGLXueShengService xxglXueShengService;
 	
 	@Test
 	public void test1(){
-		XXGLStudent model=new XXGLStudent();
+		XXGLXueSheng model=new XXGLXueSheng();
 		model.setRemark("嘿嘿");
 		model.setSex(true);
-		model.setStuName("学生1");
-		xxglStudentService.add(model);
+		model.setXueshengName("学生1");
+		xxglXueShengService.add(model);
 		
+		
+		
+	    logger.info(JSON.toJSONString(model));  
 		//logger.info(message);
+	}
+	
+	@Test
+	public void test2(){
+		XXGLXueSheng model= xxglXueShengService.queryByGuid("b5c19b94fcc411e6a4e1e03f4947f22f");
+		logger.info(JSON.toJSONString(model));  
 	}
 }

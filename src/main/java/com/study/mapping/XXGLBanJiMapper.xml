@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.dao.XXGLBanJiDao" >
+  <resultMap id="BaseResultMap" type="com.study.entity.XXGLBanJi" >
+    <id column="BanJi_Guid" property="banjiGuid" jdbcType="VARCHAR" />
+    <result column="BanJi_Name" property="banjiName" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BanJi_Guid, BanJi_Name, Address, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from XXGL_BanJi
+    where BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from XXGL_BanJi
+    where BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.study.entity.XXGLBanJi" >
+    <selectKey keyProperty="banjiGuid" resultType="String" order="BEFORE">  
+        select  replace(uuid(),'-','')   from dual  
+    </selectKey>  
+    insert into XXGL_BanJi (BanJi_Guid, BanJi_Name, Address, 
+      Remark)
+    values (#{banjiGuid,jdbcType=VARCHAR}, #{banjiName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.study.entity.XXGLBanJi" >
+    insert into XXGL_BanJi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="banjiGuid != null" >
+        BanJi_Guid,
+      </if>
+      <if test="banjiName != null" >
+        BanJi_Name,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="banjiGuid != null" >
+        #{banjiGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="banjiName != null" >
+        #{banjiName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.study.entity.XXGLBanJi" >
+    update XXGL_BanJi
+    <set >
+      <if test="banjiName != null" >
+        BanJi_Name = #{banjiName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.study.entity.XXGLBanJi" >
+    update XXGL_BanJi
+    set BanJi_Name = #{banjiName,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

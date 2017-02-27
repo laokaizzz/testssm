@@ -1,28 +1,28 @@
 package com.study.entity;
 
-public class XXGLClass {
-    private String classGuid;
+public class XXGLBanJi {
+    private String banjiGuid;
 
-    private String className;
+    private String banjiName;
 
     private String address;
 
     private String remark;
 
-    public String getClassGuid() {
-        return classGuid;
+    public String getBanjiGuid() {
+        return banjiGuid;
     }
 
-    public void setClassGuid(String classGuid) {
-        this.classGuid = classGuid == null ? null : classGuid.trim();
+    public void setBanjiGuid(String banjiGuid) {
+        this.banjiGuid = banjiGuid == null ? null : banjiGuid.trim();
     }
 
-    public String getClassName() {
-        return className;
+    public String getBanjiName() {
+        return banjiName;
     }
 
-    public void setClassName(String className) {
-        this.className = className == null ? null : className.trim();
+    public void setBanjiName(String banjiName) {
+        this.banjiName = banjiName == null ? null : banjiName.trim();
     }
 
     public String getAddress() {

@@ -1,13 +1,13 @@
 package com.study.service;
 
-import com.study.entity.XXGLClass;
+import com.study.entity.XXGLBanJi;
 
 /**
  * @author zhengkai
  *
- *  @date 2017年2月24日 上午11:44:55
+ *  @date 2017年2月27日 下午4:03:06
  */
-public interface XXGLClassService {
+public interface XXGLBanJiService {
 	/**
 	 * 新增
 	 * @param model
@@ -15,7 +15,7 @@ public interface XXGLClassService {
 	 * @author zhengkai
 	 * @date 2017年2月24日 上午11:48:19
 	 */
-	public int add(XXGLClass model);
+	public int add(XXGLBanJi model);
 	
 	/**
 	 * 更新
@@ -24,5 +24,5 @@ public interface XXGLClassService {
 	 * @author zhengkai
 	 * @date 2017年2月24日 上午11:48:19
 	 */
-	public XXGLClass update(XXGLClass model);
+	public XXGLBanJi update(XXGLBanJi model);
 }
