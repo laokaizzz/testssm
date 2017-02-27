@@ -23,7 +23,7 @@ public class StudyTest {
 	
 	@Autowired
 	private XXGLXueShengService xxglXueShengService;
-	
+/*	
 	@Test
 	public void test1(){
 		XXGLXueSheng model=new XXGLXueSheng();
@@ -36,11 +36,11 @@ public class StudyTest {
 		
 	    logger.info(JSON.toJSONString(model));  
 		//logger.info(message);
-	}
+	}*/
 	
 	@Test
 	public void test2(){
-		XXGLXueSheng model= xxglXueShengService.queryByGuid("b5c19b94fcc411e6a4e1e03f4947f22f");
+		XXGLXueSheng model= xxglXueShengService.queryByGuid("46d3f6cdfcc511e6a4e1e03f4947f22f");
 		logger.info(JSON.toJSONString(model));  
 	}
 }

@@ -7,15 +7,18 @@
     <result column="Sex" property="sex" jdbcType="BIT" />
     <result column="Remark" property="remark" jdbcType="VARCHAR" />
     <result column="BanJi_Guid" property="banjiGuid" jdbcType="VARCHAR" />
+    <association property="banJi" javaType="com.study.entity.XXGLBanJi">
+    	<id column="BanJi_Guid" property="banjiGuid" jdbcType="VARCHAR" />
+    	<result column="BanJi_Name" property="banjiName" jdbcType="VARCHAR"  />
+    </association>
   </resultMap>
   <sql id="Base_Column_List" >
     XueSheng_Guid, XueSheng_Name, Sex, Remark, BanJi_Guid
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from XXGL_XueSheng
-    where XueSheng_Guid = #{xueshengGuid,jdbcType=VARCHAR}
+    select *
+    from XXGL_XueSheng a,XXGL_BanJi b 
+    where a.BanJi_Guid=b.BanJi_Guid and a.XueSheng_Guid = #{xueshengGuid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from XXGL_XueSheng

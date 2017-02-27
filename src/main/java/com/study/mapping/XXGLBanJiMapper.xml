@@ -7,6 +7,7 @@
     <result column="Address" property="address" jdbcType="VARCHAR" />
     <result column="Remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
+  
   <sql id="Base_Column_List" >
     BanJi_Guid, BanJi_Name, Address, Remark
   </sql>

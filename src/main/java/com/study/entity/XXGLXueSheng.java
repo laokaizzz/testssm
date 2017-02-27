@@ -11,6 +11,8 @@ public class XXGLXueSheng {
 
     private String banjiGuid;
 
+    private XXGLBanJi banJi;
+    
     public String getXueshengGuid() {
         return xueshengGuid;
     }
@@ -50,4 +52,12 @@ public class XXGLXueSheng {
     public void setBanjiGuid(String banjiGuid) {
         this.banjiGuid = banjiGuid == null ? null : banjiGuid.trim();
     }
+
+	public XXGLBanJi getBanJi() {
+		return banJi;
+	}
+
+	public void setBanJi(XXGLBanJi banJi) {
+		this.banJi = banJi;
+	}
 }
