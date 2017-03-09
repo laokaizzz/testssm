@@ -6,10 +6,11 @@
     <result column="BanJi_Name" property="banjiName" jdbcType="VARCHAR" />
     <result column="Address" property="address" jdbcType="VARCHAR" />
     <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="Class_Name" property="className" jdbcType="VARCHAR" />
   </resultMap>
   
   <sql id="Base_Column_List" >
-    BanJi_Guid, BanJi_Name, Address, Remark
+    BanJi_Guid, BanJi_Name, Address, Remark,Class_Name
   </sql>
   <select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -23,6 +24,7 @@
     <result column="BanJi_Name" property="banjiName" jdbcType="VARCHAR" />
     <result column="Address" property="address" jdbcType="VARCHAR" />
     <result column="Remark" property="remark" jdbcType="VARCHAR" />
+     <result column="Class_Name" property="className" jdbcType="VARCHAR" />
     <collection property="lsXueSheng" ofType="XXGLXueSheng">
     	  <id column="XueSheng_Guid" property="xueshengGuid" jdbcType="VARCHAR" />
    		 <result column="XueSheng_Name" property="xueshengName" jdbcType="VARCHAR" />
@@ -43,7 +45,7 @@
         select  replace(uuid(),'-','')   from dual  
     </selectKey>  
     insert into XXGL_BanJi (BanJi_Guid, BanJi_Name, Address, 
-      Remark)
+      Remark,Class_Name)
     values (#{banjiGuid,jdbcType=VARCHAR}, #{banjiName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
@@ -61,6 +63,9 @@
       </if>
       <if test="remark != null" >
         Remark,
+      </if>
+      <if test="className != null" >
+        Class_Name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -90,6 +95,9 @@
       <if test="remark != null" >
         Remark = #{remark,jdbcType=VARCHAR},
       </if>
+       <if test="className != null" >
+        Class_Name = #{className,jdbcType=VARCHAR},
+      </if>
     </set>
     where BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR}
   </update>
@@ -97,7 +105,8 @@
     update XXGL_BanJi
     set BanJi_Name = #{banjiName,jdbcType=VARCHAR},
       Address = #{address,jdbcType=VARCHAR},
-      Remark = #{remark,jdbcType=VARCHAR}
+      Remark = #{remark,jdbcType=VARCHAR},
+      Class_Name = #{className,jdbcType=VARCHAR}
     where BanJi_Guid = #{banjiGuid,jdbcType=VARCHAR}
   </update>
 </mapper>

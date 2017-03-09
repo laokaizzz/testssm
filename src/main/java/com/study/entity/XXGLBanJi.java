@@ -13,6 +13,8 @@ public class XXGLBanJi {
     
     private List<XXGLXueSheng> lsXueSheng;
 
+    private String className;
+    
     public String getBanjiGuid() {
         return banjiGuid;
     }
@@ -51,5 +53,13 @@ public class XXGLBanJi {
 
 	public void setLsXueSheng(List<XXGLXueSheng> lsXueSheng) {
 		this.lsXueSheng = lsXueSheng;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
 	}
 }

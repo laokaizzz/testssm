@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.dao.XXGLClassDao" >
+  <resultMap id="BaseResultMap" type="com.study.entity.XXGLClass" >
+    <id column="Class_Guid" property="classGuid" jdbcType="VARCHAR" />
+    <result column="Class_Name" property="className" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Class_Guid, Class_Name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from XXGL_Class
+    where Class_Guid = #{classGuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from XXGL_Class
+    where Class_Guid = #{classGuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.study.entity.XXGLClass" >
+    insert into XXGL_Class (Class_Guid, Class_Name)
+    values (#{classGuid,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.study.entity.XXGLClass" >
+    insert into XXGL_Class
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classGuid != null" >
+        Class_Guid,
+      </if>
+      <if test="className != null" >
+        Class_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classGuid != null" >
+        #{classGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.study.entity.XXGLClass" >
+    update XXGL_Class
+    <set >
+      <if test="className != null" >
+        Class_Name = #{className,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Class_Guid = #{classGuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.study.entity.XXGLClass" >
+    update XXGL_Class
+    set Class_Name = #{className,jdbcType=VARCHAR}
+    where Class_Guid = #{classGuid,jdbcType=VARCHAR}
+  </update>
+</mapper>
